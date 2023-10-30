@@ -8,9 +8,13 @@ References:
 - https://developers.google.com/optimization/routing/cvrp
 - https://satpal-singh.medium.com/solving-cvrptw-using-or-tools-in-python-214247f6d680
 - https://ieomsociety.org/bogota2017/papers/271.pdf (To undersatnd the Mathematical Modelling of the Problem)
+- https://youtu.be/v9tUEsHD6BE?feature=shared
+- https://youtu.be/K41xgbBh7Zs?feature=shared
+- https://youtu.be/xAWCVJU8HXk?feature=shared
 
 
 PS: Setup the env by doing
+
 ```
 pip install -r requirements.txt
 ```
