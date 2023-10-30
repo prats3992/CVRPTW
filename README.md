@@ -13,6 +13,7 @@ We will also be addign a version of the code that utilizes Google Maps API and u
 - https://youtu.be/v9tUEsHD6BE?feature=shared
 - https://youtu.be/K41xgbBh7Zs?feature=shared
 - https://youtu.be/xAWCVJU8HXk?feature=shared
+- https://www.youtube.com/playlist?list=PLaoe2MTbJBvpFPyMMSOB-WrHofdHo3e74
 **Link for project update_1**
 - https://docs.google.com/document/d/1pKdxVmUKyVewOZ36xxJ9mzS1jr9hbJ9EV8Gz5XEfV1A/edit?usp=sharing
 
