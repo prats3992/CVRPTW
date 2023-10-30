@@ -8,6 +8,7 @@ We will also be addign a version of the code that utilizes Google Maps API and u
 - https://developers.google.com/optimization/routing/cvrp
 - https://satpal-singh.medium.com/solving-cvrptw-using-or-tools-in-python-214247f6d680
 - https://ieomsociety.org/bogota2017/papers/271.pdf (To understand the Mathematical Modelling of the Problem)
+- https://www.youtube.com/watch?v=mXoiHgH4mEE (link for directed graphs)
 **youtube videos** 
 - https://youtu.be/v9tUEsHD6BE?feature=shared
 - https://youtu.be/K41xgbBh7Zs?feature=shared
