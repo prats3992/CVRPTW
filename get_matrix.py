@@ -1,29 +1,18 @@
 import requests
 import json
 import urllib.request as urllib
-
+from API_KEYS import API_KEY
 
 def create_data():
   """Creates the data."""
   data = {}
-  data['API_key'] = 'AIzaSyBdQZPNGBHm47nAbcx3RlIBjevzgquxxJM' 
-  data['addresses'] = ['3610+Hacks+Cross+Rd+Memphis+TN', # depot
-                       '1921+Elvis+Presley+Blvd+Memphis+TN',
-                       '149+Union+Avenue+Memphis+TN',
-                       '1034+Audubon+Drive+Memphis+TN',
-                       '1532+Madison+Ave+Memphis+TN',
-                       '706+Union+Ave+Memphis+TN',
-                       '3641+Central+Ave+Memphis+TN',
-                       '926+E+McLemore+Ave+Memphis+TN',
-                       '4339+Park+Ave+Memphis+TN',
-                       '600+Goodwyn+St+Memphis+TN',
-                       '2000+North+Pkwy+Memphis+TN',
-                       '262+Danny+Thomas+Pl+Memphis+TN',
-                       '125+N+Front+St+Memphis+TN',
-                       '5959+Park+Ave+Memphis+TN',
-                       '814+Scott+St+Memphis+TN',
-                       '1005+Tillman+St+Memphis+TN'
-                      ]
+  data['API_key'] = API_KEY
+  data['addresses'] = [
+        '3610+Hacks+Cross+Rd+Memphis+TN',
+        '1921+Elvis+Presley+Blvd+Memphis+TN',
+        '149+Union+Avenue+Memphis+TN',
+        '1034+Audubon+Drive+Memphis+TN'
+    ]
   return data
 
 def create_distance_matrix(data):
@@ -115,9 +104,12 @@ def main():
   distance_matrix = create_distance_matrix(data)
   time_matrix=create_time_matrix(data)
   print(distance_matrix,time_matrix,sep='\n'*2)
-  with open("matrix.txt","w") as f:
-    f.write(str(distance_matrix))
-    f.write('\n'*2)
-    f.write(str(time_matrix))
+  with open("non_distance_matrix.txt", "w") as f:
+    for row_distances in distance_matrix:
+      f.write("\t".join(str(d) for d in row_distances) + "\n")
+
+  with open("non_time_matrix.txt", "w") as f:
+    for row_times in time_matrix:
+      f.write("\t".join(str(t) for t in row_times) + "\n")
 if __name__ == '__main__':
   main()
