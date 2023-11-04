@@ -1,21 +1,34 @@
 import requests
 import json
 import urllib.request as urllib
-from API_KEYS import API_KEY
+import os
+from dotenv import load_dotenv
 
+load_dotenv(dotenv_path="API.env")
 # The distances are in meters, and the times are in seconds in the matrices
 
 
 def create_data():
     """Creates the data for route distances and times."""
     data = {}
-    data['API_key'] = API_KEY
-    data['locations'] = [
-        '3610+Hacks+Cross+Rd+Memphis+TN',
-        '1921+Elvis+Presley+Blvd+Memphis+TN',
-        '149+Union+Avenue+Memphis+TN',
-        '1034+Audubon+Drive+Memphis+TN'
-    ]
+    data['API_key'] = os.getenv('API_KEY')
+    data['locations'] = ['3610+Hacks+Cross+Rd+Memphis+TN',  # depot
+                         '1921+Elvis+Presley+Blvd+Memphis+TN',
+                         '149+Union+Avenue+Memphis+TN',
+                         '1034+Audubon+Drive+Memphis+TN',
+                         '1532+Madison+Ave+Memphis+TN',
+                         '706+Union+Ave+Memphis+TN',
+                         '3641+Central+Ave+Memphis+TN',
+                         '926+E+McLemore+Ave+Memphis+TN',
+                         '4339+Park+Ave+Memphis+TN',
+                         '600+Goodwyn+St+Memphis+TN',
+                         '2000+North+Pkwy+Memphis+TN',
+                         '262+Danny+Thomas+Pl+Memphis+TN',
+                         '125+N+Front+St+Memphis+TN',
+                         '5959+Park+Ave+Memphis+TN',
+                         '814+Scott+St+Memphis+TN',
+                         '1005+Tillman+St+Memphis+TN'
+                         ]
     return data
 
 
