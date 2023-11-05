@@ -2,3 +2,4 @@
 __pycache__
 API.env
 *matrix.txt
+*.env
