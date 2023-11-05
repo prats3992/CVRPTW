@@ -1,2 +1,4 @@
-.vscode/*
-__pycache__/*
+.vscode
+__pycache__
+API.env
+*matrix.txt

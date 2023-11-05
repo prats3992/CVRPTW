@@ -12,22 +12,22 @@ def create_data():
     """Creates the data for route distances and times."""
     data = {}
     data['API_key'] = os.getenv('API_KEY')
-    data['locations'] = ['3610+Hacks+Cross+Rd+Memphis+TN',  # depot
-                         '1921+Elvis+Presley+Blvd+Memphis+TN',
-                         '149+Union+Avenue+Memphis+TN',
-                         '1034+Audubon+Drive+Memphis+TN',
-                         '1532+Madison+Ave+Memphis+TN',
-                         '706+Union+Ave+Memphis+TN',
-                         '3641+Central+Ave+Memphis+TN',
-                         '926+E+McLemore+Ave+Memphis+TN',
-                         '4339+Park+Ave+Memphis+TN',
-                         '600+Goodwyn+St+Memphis+TN',
-                         '2000+North+Pkwy+Memphis+TN',
-                         '262+Danny+Thomas+Pl+Memphis+TN',
-                         '125+N+Front+St+Memphis+TN',
-                         '5959+Park+Ave+Memphis+TN',
-                         '814+Scott+St+Memphis+TN',
-                         '1005+Tillman+St+Memphis+TN'
+    data['locations'] = [r'Dtdc+Courier+Service+Aerocity+mohali',  # depot
+                         r'Amity+University,+Mohali',
+                         r'Plaksha+University',
+                         r'Indian+Institute+of+Science+Education+and+Research+Mohali',
+                         r'JLPL+Falcon+View',
+                         r'World+Trade+Center+Chandigarh',
+                         r'Public+Hospital+And+Maternity+Home+,+Chhat',
+                         r'Vyayam+Yoga+Studio',
+                         r'Kirat+Cricket+Coaching+Academy+in+Mohali,+Chandigarh',
+                         r'Sky+Gardens,+Sector+66A,+Mohali',
+                         r'Indian+School+Of+Business-Mohali+(ISB-Mohali)',
+                         r'National+Agri-Food+Biotechnology+Institute',
+                         r'Manav+Rachna+International+School,+Mohali',
+                         r'Infosys+SAS+Nagar+IT+City+Campus+Ajitgarh',
+                         r'Surya+Nursery+Mohali',
+                         r'Shaheed+Udham+Singh+College+of+Engineering+%26+Technology'
                          ]
     return data
 
@@ -121,13 +121,13 @@ def main():
         print(row_times)
 
     # Save the matrices to text files
-    # with open("distance_matrix.txt", "w") as f:
-    #     for row_distances in distance_matrix:
-    #         f.write("\t".join(str(d) for d in row_distances) + "\n")
+    with open("distance_matrix.txt", "w") as f:
+        for row_distances in distance_matrix:
+            f.write("\t".join(str(d) for d in row_distances) + "\n")
 
-    # with open("time_matrix.txt", "w") as f:
-    #     for row_times in time_matrix:
-    #         f.write("\t".join(str(t) for t in row_times) + "\n")
+    with open("time_matrix.txt", "w") as f:
+        for row_times in time_matrix:
+            f.write("\t".join(str(t) for t in row_times) + "\n")
 
 
 if __name__ == '__main__':
