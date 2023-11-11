@@ -17,6 +17,11 @@ We will also be addign a version of the code that utilizes Google Maps API and u
 # **Project Update Reports**
 ## **Project Update 1**
 - https://docs.google.com/document/d/1pKdxVmUKyVewOZ36xxJ9mzS1jr9hbJ9EV8Gz5XEfV1A/edit?usp=sharing
+# **Academic References**
+- Lee, C., Lee, K., & Park, S. (2012). Robust vehicle routing problem with deadlines and travel time/demand uncertainty. The Journal of the Operational Research Society, 63(9), 1294–1306. http://www.jstor.org/stable/23251203
+- Cosma, O., Pop, P. C., & Sitar, C. P. (2022). A two-level based genetic algorithm for solving the soft-clustered vehicle routing problem. Carpathian Journal of Mathematics, 38(1), 117–128. https://www.jstor.org/stable/27082123
+- C. Schumacher, P. R. Chandler, Pachter, M., & L. S. Pachter. (2007). Optimization of Air Vehicles Operations Using Mixed-Integer Linear Programming. The Journal of the Operational Research Society, 58(4), 516–527. http://www.jstor.org/stable/4622724
+- Baldacci, R., Ngueveu, S. U., & Calvo, R. W. (2017). The Vehicle Routing Problem with Transhipment Facilities. Transportation Science, 51(2), 592–606. http://www.jstor.org/stable/44282435 
 
 PS: Setup the env by doing
 
