@@ -27,8 +27,8 @@ def create_data():
                          r'Manav+Rachna+International+School,+Mohali',
                          r'Infosys+SAS+Nagar+IT+City+Campus+Ajitgarh',
                          r'Surya+Nursery+Mohali',
-                         r'Shaheed+Udham+Singh+College+of+Engineering+%26+Technology'
-                         ]
+                         r'Shaheed+Udham+Singh+College+of+Engineering+%26+Technology',
+                         r'Singh+Sheeda+Gurdwara+Sahib']
     return data
 
 
