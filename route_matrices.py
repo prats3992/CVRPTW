@@ -13,21 +13,21 @@ def create_data():
     data = {}
     data['API_key'] = os.getenv('API_KEY')
     data['locations'] = [r'Dtdc+Courier+Service+Aerocity+mohali',  # depot
-                         r'Amity+University,+Mohali',
+                         r'Mahendra+Chaudhary+Zoological+Park,+Chhat+Bir+Zoo,+Zirakpur',
+                         r'Radisson+Hotel+Chandigarh+Zirakpur',
                          r'Plaksha+University',
-                         r'Indian+Institute+of+Science+Education+and+Research+Mohali',
+                         r'Bestech+Square+Mall',
                          r'JLPL+Falcon+View',
-                         r'World+Trade+Center+Chandigarh',
-                         r'Public+Hospital+And+Maternity+Home+,+Chhat',
-                         r'Vyayam+Yoga+Studio',
-                         r'Kirat+Cricket+Coaching+Academy+in+Mohali,+Chandigarh',
-                         r'Sky+Gardens,+Sector+66A,+Mohali',
-                         r'Indian+School+Of+Business-Mohali+(ISB-Mohali)',
-                         r'National+Agri-Food+Biotechnology+Institute',
-                         r'Manav+Rachna+International+School,+Mohali',
-                         r'Infosys+SAS+Nagar+IT+City+Campus+Ajitgarh',
-                         r'Surya+Nursery+Mohali',
-                         r'Shaheed+Udham+Singh+College+of+Engineering+%26+Technology',
+                         r'Mohali+IT+City+Park',
+                         r'Amity+University,+Mohali',
+                         r'Sharon+Resort',
+                         r'La+Palacio+Luxury+Banquet+%26+Lawns+-+Wedding+Palace+in+Zirakpur',
+                         r'Strawberry+Global+Smart+School',
+                         r'Akm+Resorts',
+                         r'Gurdwara+Dushat+Daman+Durali',
+                         r'Jayant+education',
+                         r'The+Mohali+Club+%7C%7C+Wyndham+Chandigarh+Mohali',
+                         r"The+Amaltas+Farms",
                          r'Singh+Sheeda+Gurdwara+Sahib']
     return data
 
