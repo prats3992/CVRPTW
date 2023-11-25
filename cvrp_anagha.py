@@ -8,9 +8,10 @@ def create_data_model():
     """Stores the data for the problem."""
     data = {}
     with open("distance_matrix.txt") as f:
-        data["distance_matrix"] = [[int(num) for num in line.split('\t')] for line in f.readlines()]
-    data["demands"] = [0, 1, 1, 2, 4, 2, 4, 8, 8, 1, 2, 1, 2, 4, 4, 8, 8]
-    data["vehicle_capacities"] = [15, 15, 15, 15]
+        data["distance_matrix"] = [
+            [int(num) for num in line.split('\t')] for line in f.readlines()]
+    data["demands"] = [0, 5, 4, 5, 7, 8, 6, 6, 10, 6, 5, 6, 12, 4, 4, 4, 8]
+    data["vehicle_capacities"] = [25, 25, 25, 25]
     data["num_vehicles"] = 4
     data["depot"] = 0
     return data
@@ -78,7 +79,8 @@ def main():
         from_node = manager.IndexToNode(from_index)
         return data["demands"][from_node]
 
-    demand_callback_index = routing.RegisterUnaryTransitCallback(demand_callback)
+    demand_callback_index = routing.RegisterUnaryTransitCallback(
+        demand_callback)
     routing.AddDimensionWithVehicleCapacity(
         demand_callback_index,
         0,  # null capacity slack
@@ -89,8 +91,8 @@ def main():
 
     # Setting first solution heuristic.
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
-    search_parameters.time_limit.seconds = 30
-    search_parameters.solution_limit = 100
+    search_parameters.time_limit.seconds = 50
+    search_parameters.solution_limit = 10**4
     search_parameters.first_solution_strategy = (
         routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
     )
@@ -103,6 +105,7 @@ def main():
         print_solution(data, manager, routing, solution)
     else:
         print("No Soln")
+
 
 if __name__ == "__main__":
     main()
