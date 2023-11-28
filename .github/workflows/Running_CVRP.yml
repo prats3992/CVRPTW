@@ -1,0 +1,38 @@
+name: Deploy and Run CVRP
+
+on:
+    push:
+        branches:
+          - 'main'
+
+jobs:
+    deploy_and_run:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Set up Python
+              uses: actions/setup-python@v2
+              with:
+                python-version: 3.10.12
+
+            - name: Install dependencies
+              run: python3 -m pip3 install --upgrade --user ortools
+
+
+            - name: Get Credentials
+              env:
+                GITHUB_TOKEN: ${{ secrets.API_KEY }}
+              run:
+                echo $GITHUB_TOKEN > .API_KEY_HOLDER.env
+
+            - name: Run Matrix Creation
+              run: sudo chmod +x ./*.py;./route_matrices.py
+            
+            - name: Run CVRP
+              run: sudo chmod +x ./*.py;./cvrp_anagha.py
+
+            - name: Remove Credentials
+              run: rm ./py_cron/credentials.json
