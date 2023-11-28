@@ -2,16 +2,15 @@ import requests
 import json
 import urllib.request as urllib
 import os
-from dotenv import load_dotenv
-
-load_dotenv(dotenv_path="API_KEY_HOLDER.env")
 # The distances are in meters, and the times are in seconds in the matrices
 
 
 def create_data():
     """Creates the data for route distances and times."""
     data = {}
-    data['API_key'] = os.getenv('API_KEY')
+    with open("API_KEY_HOLDER.env") as f:
+        x = f.readline()
+    data['API_key'] = x
     data['locations'] = [r'Dtdc+Courier+Service+Aerocity+mohali',  # depot
                          r'Mahendra+Chaudhary+Zoological+Park,+Chhat+Bir+Zoo,+Zirakpur',
                          r'Radisson+Hotel+Chandigarh+Zirakpur',

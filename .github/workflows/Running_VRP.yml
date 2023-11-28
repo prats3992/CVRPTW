@@ -19,14 +19,14 @@ jobs:
                 python-version: 3.10.12
 
             - name: Install dependencies
-              run: pip3 install --upgrade --user ortools;pip3 install python-dotenv
+              run: pip3 install --upgrade --user ortools
 
 
             - name: Get Credentials
               env:
                 GITHUB_TOKEN: ${{ secrets.API_KEY }}
               run:
-                echo "API_KEY="$GITHUB_TOKEN > API_KEY_HOLDER.env
+                echo $GITHUB_TOKEN > API_KEY_HOLDER.env
 
             - name: Run Matrix Creation
               run: sudo chmod +x ./*.py;./route_matrices.py
