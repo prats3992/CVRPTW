@@ -19,14 +19,14 @@ jobs:
                 python-version: 3.10.12
 
             - name: Install dependencies
-              run: python3 -m pip3 install --upgrade --user ortools
+              run: pip3 install --upgrade --user ortools
 
 
             - name: Get Credentials
               env:
                 GITHUB_TOKEN: ${{ secrets.API_KEY }}
               run:
-                echo $GITHUB_TOKEN > .API_KEY_HOLDER.env
+                echo "API_KEY="$GITHUB_TOKEN > API_KEY_HOLDER.env
 
             - name: Run Matrix Creation
               run: sudo chmod +x ./*.py;./route_matrices.py
@@ -35,4 +35,4 @@ jobs:
               run: sudo chmod +x ./*.py;./cvrp_anagha.py
 
             - name: Remove Credentials
-              run: rm ./py_cron/credentials.json
+              run: rm API_KEY_HOLDER.env
