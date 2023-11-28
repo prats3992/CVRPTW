@@ -11,7 +11,7 @@ def create_data():
     data = {}
     with open("API_KEY_HOLDER.env") as f:
         x = f.readline()
-    data['API_key'] = x
+    data['API_key'] = x.strip()
     data['locations'] = [r'Dtdc+Courier+Service+Aerocity+mohali',  # depot
                          r'Mahendra+Chaudhary+Zoological+Park,+Chhat+Bir+Zoo,+Zirakpur',
                          r'Radisson+Hotel+Chandigarh+Zirakpur',
