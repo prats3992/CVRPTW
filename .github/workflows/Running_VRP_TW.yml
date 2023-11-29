@@ -1,4 +1,4 @@
-name: Deploy and Run VRP_TW
+name: Deploy and Run VRP TW
 
 on:
     push:
@@ -30,7 +30,7 @@ jobs:
             - name: Run Matrix Creation
               run: sudo chmod +x ./*.py;./route_matrices.py
             
-            - name: Run CVRP
+            - name: Run VRP TW
               run: sudo chmod +x ./*.py;./vrp_tw.py
 
             - name: Remove Credentials

@@ -31,7 +31,7 @@ jobs:
             - name: Run Matrix Creation
               run: sudo chmod +x ./*.py;./route_matrices.py
             
-            - name: Run CVRP
+            - name: Run VRP
               run: sudo chmod +x ./*.py;./vrp.py
 
             - name: Remove Credentials
