@@ -1,4 +1,4 @@
-name: Deploy and Run CVRP
+name: Deploy and Run VRP
 
 on:
     push:
