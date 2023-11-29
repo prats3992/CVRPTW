@@ -93,6 +93,11 @@ def extract_route_distance(response):
 
     return None
 
+def max_val(file: str) -> int:
+    with open(file) as f:
+        matrix = [[int(num) for num in line.split("\t")] for line in f]
+    return max(max(row) for row in matrix)
+
 
 def extract_route_duration(response):
     if 'routes' in response and len(response['routes']) > 0:
