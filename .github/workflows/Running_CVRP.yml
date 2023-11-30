@@ -31,7 +31,7 @@ jobs:
               run: sudo chmod +x ./*.py;./route_matrices.py
             
             - name: Run CVRP
-              run: sudo chmod +x ./*.py;./cvrp_anagha.py
+              run: sudo chmod +x ./*.py;./cvrp.py
 
             - name: Remove Credentials
               run: rm API_KEY_HOLDER.env

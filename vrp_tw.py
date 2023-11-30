@@ -3,7 +3,7 @@
 
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
-
+from route_matrices import max_val
 
 def create_data_model():
     """Stores the data for the problem."""
@@ -29,7 +29,7 @@ def create_data_model():
         (300, 800),  # 15
         (500, 1100),  # 16
     ]
-    data["num_vehicles"] = 6
+    data["num_vehicles"] = 8
     data["depot"] = 0
     return data
 
@@ -91,9 +91,9 @@ def main():
     time = "Time"
     routing.AddDimension(
         transit_callback_index,
-        750,  # allow waiting time
-        2000,  # maximum time per vehicle
-        False,  # Don't force start cumul to zero.
+        10 * max_val("time_matrix.txt"),  # allow waiting time
+        10 * max_val("time_matrix.txt"),  # maximum time per vehicle
+        True,  # Don't force start cumul to zero.
         time,
     )
     time_dimension = routing.GetDimensionOrDie(time)
@@ -120,6 +120,8 @@ def main():
 
     # Setting first solution heuristic.
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
+    search_parameters.time_limit.seconds = 120
+    search_parameters.solution_limit = 10**8
     search_parameters.first_solution_strategy = (
         routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
     )

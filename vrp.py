@@ -8,7 +8,7 @@ def create_data_model():
     data = {}
     with open("distance_matrix.txt", "r") as f:
         data["distance_matrix"] = [[int(num) for num in line.split("\t")] for line in f.readlines()]
-    data["num_vehicles"] = 4
+    data["num_vehicles"] = 8
     data["depot"] = 0
     return data
 
@@ -67,7 +67,7 @@ def main():
     routing.AddDimension(
         transit_callback_index,
         0,  # no slack
-        30000,  # vehicle maximum travel distance
+        20000,  # vehicle maximum travel distance
         True,  # start cumul to zero
         dimension_name,
     )

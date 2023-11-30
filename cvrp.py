@@ -11,9 +11,9 @@ def create_data_model():
     with open("distance_matrix.txt") as f:
         data["distance_matrix"] = [
             [int(num) for num in line.split('\t')] for line in f.readlines()]
-    data["demands"] = [0, 5, 4, 5, 7, 8, 6, 6, 10, 6, 5, 6, 12, 4, 4, 4, 8]
-    data["vehicle_capacities"] = [25, 25, 25, 25]
-    data["num_vehicles"] = 4
+    data["demands"] = [0, 10, 10, 10, 10, 10, 13, 15, 15, 9, 15, 10, 12, 10, 10, 11, 10]
+    data["vehicle_capacities"] = [25, 25, 25, 25, 25, 25, 25, 25]
+    data["num_vehicles"] = 8
     data["depot"] = 0
     return data
 
