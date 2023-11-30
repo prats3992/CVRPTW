@@ -67,7 +67,7 @@ def main():
     routing.AddDimension(
         transit_callback_index,
         0,  # no slack
-        20000,  # vehicle maximum travel distance
+        25000,  # vehicle maximum travel distance
         True,  # start cumul to zero
         dimension_name,
     )
