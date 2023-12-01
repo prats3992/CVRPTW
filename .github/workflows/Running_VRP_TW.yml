@@ -26,9 +26,6 @@ jobs:
                 GITHUB_TOKEN: ${{ secrets.API_KEY }}
               run:
                 echo $GITHUB_TOKEN > API_KEY_HOLDER.env
-
-            - name: Run Matrix Creation
-              run: sudo chmod +x ./*.py;./route_matrices.py
             
             - name: Run VRP TW
               run: sudo chmod +x ./*.py;./vrp_tw.py
