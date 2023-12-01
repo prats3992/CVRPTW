@@ -4,7 +4,25 @@ import json
 import urllib.request as urllib
 import os
 # The distances are in meters, and the times are in seconds in the matrices
-
+LOCATION={
+    0: 'Dtdc Courier Service Aerocity mohali',
+    1: 'Mahendra Chaudhary Zoological Park, Chhat Bir Zoo, Zirakpur',
+    2: 'Radisson Hotel Chandigarh Zirakpur',
+    3: 'Plaksha University',
+    4: 'Bestech Square Mall',
+    5: 'JLPL Falcon View',
+    6: 'Mohali IT City Park',
+    7: 'Amity University, Mohali',
+    8: 'Sharon Resort',
+    9: 'La Palacio Luxury Banquet & Lawns - Wedding Palace in Zirakpur',
+    10: 'Strawberry Global Smart School',
+    11: 'Akm Resorts',
+    12: 'Gurdwara Dushat Daman Durali',
+    13: 'Jayant education',
+    14: 'The Mohali Club || Wyndham Chandigarh Mohali',
+    15: "The Amaltas Farms",
+    16: 'Singh Sheeda Gurdwara Sahib'
+}
 
 def create_data():
     """Creates the data for route distances and times."""

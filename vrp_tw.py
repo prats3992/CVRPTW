@@ -5,31 +5,34 @@ from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 from route_matrices import max_val
 
+
 def create_data_model():
     """Stores the data for the problem."""
     data = {}
     with open("time_matrix.txt", "r") as f:
-        data["time_matrix"] = [[int(num) for num in line.split("\t")] for line in f]
+        data["time_matrix"] = [[int(num)
+                                for num in line.split("\t")] for line in f]
     data["time_windows"] = [
-        (0, 800),  # depot
-        (800, 1000),  # 1
-        (1010, 1200),  # 2
-        (450, 800),  # 3
-        (900, 1050),  # 4
-        (650, 1100),  # 5
-        (880, 1105),  # 6
-        (600, 1000),  # 7
-        (1300, 1500),  # 8
-        (420, 900),  # 9
-        (600, 800),  # 10
-        (200, 1100),  # 11
-        (650, 1600),  # 12
-        (760, 1150),  # 13
-        (950, 1400),  # 14
-        (300, 800),  # 15
-        (500, 1100),  # 16
+        (0, 600),   # depot
+        (800, 1100),  # 1
+        (1000, 1300),  # 2
+        (400, 750),   # 3
+        (850, 1200),  # 4
+        (600, 1000),  # 5
+        (850, 1100),  # 6
+        (500, 900),   # 7
+        (1200, 1400),  # 8
+        (400, 800),   # 9
+        (550, 850),   # 10
+        (150, 1000),  # 11
+        (600, 1500),  # 12
+        (700, 1200),  # 13
+        (900, 1300),  # 14
+        (250, 700),   # 15
+        (400, 1000),  # 16
     ]
-    data["num_vehicles"] = 8
+
+    data["num_vehicles"] = 10
     data["depot"] = 0
     return data
 
@@ -91,8 +94,8 @@ def main():
     time = "Time"
     routing.AddDimension(
         transit_callback_index,
-        10 * max_val("time_matrix.txt"),  # allow waiting time
-        10 * max_val("time_matrix.txt"),  # maximum time per vehicle
+        400,  # allow waiting time
+        2500,  # maximum time per vehicle
         True,  # Don't force start cumul to zero.
         time,
     )
@@ -116,10 +119,13 @@ def main():
         routing.AddVariableMinimizedByFinalizer(
             time_dimension.CumulVar(routing.Start(i))
         )
-        routing.AddVariableMinimizedByFinalizer(time_dimension.CumulVar(routing.End(i)))
+        routing.AddVariableMinimizedByFinalizer(
+            time_dimension.CumulVar(routing.End(i)))
 
     # Setting first solution heuristic.
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
+    search_parameters.time_limit.seconds = 120
+    search_parameters.solution_limit = 10**6
     search_parameters.first_solution_strategy = (
         routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
     )

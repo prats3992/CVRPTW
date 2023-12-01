@@ -8,7 +8,7 @@ def create_data_model():
     data = {}
     with open("distance_matrix.txt", "r") as f:
         data["distance_matrix"] = [[int(num) for num in line.split("\t")] for line in f.readlines()]
-    data["num_vehicles"] = 8
+    data["num_vehicles"] = 6
     data["depot"] = 0
     return data
 
