@@ -3,7 +3,7 @@
 
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
-from route_matrices import max_val
+from route_matrices import max_val,LOCATION
 
 
 def create_data_model():
@@ -48,14 +48,14 @@ def print_solution(data, manager, routing, solution):
         while not routing.IsEnd(index):
             time_var = time_dimension.CumulVar(index)
             plan_output += (
-                f"{manager.IndexToNode(index)}"
+                f"{LOCATION[manager.IndexToNode(index)]}"
                 f" Time({solution.Min(time_var)},{solution.Max(time_var)})"
                 " -> "
             )
             index = solution.Value(routing.NextVar(index))
         time_var = time_dimension.CumulVar(index)
         plan_output += (
-            f"{manager.IndexToNode(index)}"
+            f"{LOCATION[manager.IndexToNode(index)]}"
             f" Time({solution.Min(time_var)},{solution.Max(time_var)})\n"
         )
         plan_output += f"Time of the route: {solution.Min(time_var)}min\n"
@@ -96,7 +96,7 @@ def main():
         transit_callback_index,
         400,  # allow waiting time
         2500,  # maximum time per vehicle
-        True,  # Don't force start cumul to zero.
+        False,  # Don't force start cumul to zero.
         time,
     )
     time_dimension = routing.GetDimensionOrDie(time)

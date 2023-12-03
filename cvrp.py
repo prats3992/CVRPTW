@@ -3,7 +3,7 @@
 
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
-
+from route_matrices import LOCATION
 
 def create_data_model():
     """Stores the data for the problem."""
@@ -31,13 +31,13 @@ def print_solution(data, manager, routing, solution):
         while not routing.IsEnd(index):
             node_index = manager.IndexToNode(index)
             route_load += data["demands"][node_index]
-            plan_output += f" {node_index} Load({route_load}) -> "
+            plan_output += f" {LOCATION[node_index]} ({route_load}) -> "
             previous_index = index
             index = solution.Value(routing.NextVar(index))
             route_distance += routing.GetArcCostForVehicle(
                 previous_index, index, vehicle_id
             )
-        plan_output += f" {manager.IndexToNode(index)} Load({route_load})\n"
+        plan_output += f" {LOCATION[manager.IndexToNode(index)]} ({route_load})\n"
         plan_output += f"Distance of the route: {route_distance}m\n"
         plan_output += f"Load of the route: {route_load}\n"
         print(plan_output)
