@@ -1,0 +1,34 @@
+name: Deploy and Run CVRPTW
+
+on:
+    push:
+        branches:
+          - 'main'
+
+jobs:
+    deploy_and_run:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Set up Python
+              uses: actions/setup-python@v2
+              with:
+                python-version: 3.10.12
+
+            - name: Install dependencies
+              run: pip3 install --upgrade --user ortools;pip3 install requests
+
+            - name: Get Credentials
+              env:
+                GITHUB_TOKEN: ${{ secrets.API_KEY }}
+              run:
+                echo $GITHUB_TOKEN > API_KEY_HOLDER.env
+          
+            - name: Run CVRPTW
+              run: sudo chmod +x ./*.py;./cvrptw.py
+
+            - name: Remove Credentials
+              run: rm API_KEY_HOLDER.env
