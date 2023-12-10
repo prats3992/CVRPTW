@@ -9,7 +9,8 @@ from route_matrices import LOCATION
 def create_data_model():
     data = {}
     with open("time_matrix.txt", "r") as f:
-        data["time_matrix"] = [[int(num) for num in line.split("\t")] for line in f.readlines()]
+        data["time_matrix"] = [
+            [int(num) for num in line.split("\t")] for line in f.readlines()]
     data["time_windows"] = [
         (0, 600),   # depot
         (800, 1100),  # 1
@@ -30,15 +31,19 @@ def create_data_model():
         (400, 1000),  # 16
     ]
     with open("distance_matrix.txt", "r") as f:
-        data["distance_matrix"] = [[int(num) for num in line.split("\t")] for line in f.readlines()]
-    data['demandLB']= [0, 12, 10, 20, 12, 15, 13, 18, 15, 12, 14, 16, 12, 13, 12, 11, 20]
-    data['vehicle_capacitiesLB']= [15, 35, 10, 25, 25, 40, 25, 25, 20, 30]
-    data['depot']= 0
+        data["distance_matrix"] = [
+            [int(num) for num in line.split("\t")] for line in f.readlines()]
+    data['demandLB'] = [0, 12, 10, 20, 12, 15, 13,
+                        18, 15, 12, 14, 16, 12, 13, 12, 11, 20]
+    data['vehicle_capacitiesLB'] = [15, 35, 10, 25, 25, 40, 25, 25, 20, 30]
+    data['depot'] = 0
     return data
 
 # function to print the results/solution
+
+
 def print_solution(data, manager, routing, solution):
-    print(f'Objective: {solution.ObjectiveValue()}') # the objective function
+    print(f'Objective: {solution.ObjectiveValue()}')  # the objective function
     time_dimension = routing.GetDimensionOrDie('Time')
     total_time = 0
     total_distance = 0
@@ -57,14 +62,17 @@ def print_solution(data, manager, routing, solution):
             index = solution.Value(routing.NextVar(index))
             node_index = manager.IndexToNode(index)
             route_loadLB += data['demandLB'][node_index]
-            loading_output += ' {0} Load({1}) -> '.format(node_index, route_loadLB)
+            loading_output += ' {0} Load({1}) -> '.format(node_index,
+                                                          route_loadLB)
             previous_index = index
-            route_distance += routing.GetArcCostForVehicle(previous_index, index, vehicle_id)
+            route_distance += routing.GetArcCostForVehicle(
+                previous_index, index, vehicle_id)
         time_var = time_dimension.CumulVar(index)
         plan_output += '{0} Time({1},{2})\n'.format(manager.IndexToNode(index),
                                                     solution.Min(time_var),
                                                     solution.Max(time_var))
-        plan_output += 'Time of the route: {}min\n'.format(solution.Min(time_var))
+        plan_output += 'Time of the route: {}min\n'.format(
+            solution.Min(time_var))
         plan_output += 'Distance of the route: {}m'.format(route_distance)
         loading_output += 'Load of the route: {}'.format(route_loadLB)
         print(plan_output)
@@ -77,10 +85,13 @@ def print_solution(data, manager, routing, solution):
     print('Total load of all routes: {}'.format(total_loadLB))
 
 # Defining main() function
+
+
 def main():
     data = create_data_model()
-    #Create node index to variable index mapping
-    manager = pywrapcp.RoutingIndexManager(len(data['time_matrix']),                                    len(data['vehicle_capacitiesLB']), data['depot']) 
+    # Create node index to variable index mapping
+    manager = pywrapcp.RoutingIndexManager(len(data['time_matrix']),                                    len(
+        data['vehicle_capacitiesLB']), data['depot'])
     # Create Routing Model
     routing = pywrapcp.RoutingModel(manager)
 
@@ -133,7 +144,8 @@ def main():
         # Convert from routing variable Index to demands NodeIndex.
         from_node = manager.IndexToNode(from_index)
         return data['demandLB'][from_node]
-    demand_callback_index = routing.RegisterUnaryTransitCallback(demand_callbackLB)
+    demand_callback_index = routing.RegisterUnaryTransitCallback(
+        demand_callbackLB)
 
     # Add Vehicle capacity weight Contraint
     routing.AddDimensionWithVehicleCapacity(
@@ -145,11 +157,14 @@ def main():
 
     # Setting first solution heuristic.
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
+    search_parameters.time_limit.seconds = 50
+    search_parameters.solution_limit = 100**3
     search_parameters.first_solution_strategy = (
         routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC)
 
     # Solve the problem.
     solution = routing.SolveWithParameters(search_parameters)
+
 
 if __name__ == '__main__':
     main()
