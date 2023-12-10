@@ -6,7 +6,7 @@ function initMap() {
   maps.forEach((mapElement) => {
     const map = new google.maps.Map(mapElement, {
       zoom: 6,
-      center: { lat: 41.85, lng: -87.65 },
+      center: { lat: 30.631062, lng: 76.725562 },
     });
 
     directionsRenderer.setMap(map);
@@ -65,7 +65,8 @@ function calculateAndDisplayRoute(
         summaryPanel.innerHTML += route.legs[i].distance.text + "<br><br>";
       }
     })
-    .catch((e) => window.alert("Directions request failed due to " + status));
+    .catch((e) => window.alert("Directions request failed due to " + e));
+
 }
 
 window.initMap = initMap;

@@ -20,11 +20,18 @@ body {
   overflow: auto;
 }
 
-#map {
+#map1 {
   flex-basis: 0;
   flex-grow: 4;
   height: 100%;
 }
+
+#map2 {
+  flex-basis: 0;
+  flex-grow: 4;
+  height: 100%;
+}
+
 
 #directions-panel {
   margin-top: 10px;
