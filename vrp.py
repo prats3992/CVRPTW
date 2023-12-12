@@ -8,7 +8,7 @@ def create_data_model():
     data = {}
     with open("distance_matrix.txt", "r") as f:
         data["distance_matrix"] = [[int(num) for num in line.split("\t")] for line in f.readlines()]
-    data["num_vehicles"] = 6
+    data["num_vehicles"] = 8
     data["depot"] = 0
     return data
 
@@ -22,7 +22,7 @@ def print_solution(data, manager, routing, solution):
         plan_output = f"Route for vehicle {vehicle_id}:\n"
         route_distance = 0
         while not routing.IsEnd(index):
-            plan_output += f" {LOCATION[manager.IndexToNode(index)]} -> "
+            plan_output += f"{LOCATION[manager.IndexToNode(index)]} -> "
             previous_index = index
             index = solution.Value(routing.NextVar(index))
             route_distance += routing.GetArcCostForVehicle(
