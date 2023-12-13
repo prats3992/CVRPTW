@@ -2,7 +2,7 @@
 import math
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
-
+from route_matrices import LOCATION
 
 def create_data_model():
     """Stores the data for the problem."""
@@ -52,13 +52,13 @@ def print_solution(data, manager, routing, solution):
             node_index = manager.IndexToNode(index)
             route_load += data['demands'][node_index]
             plan_output += '{0} Time({1},{2}) Load({3}) -> '.format(
-                node_index, solution.Min(time_var),
+                LOCATION[node_index], solution.Min(time_var),
                 solution.Max(time_var), route_load)
             index = solution.Value(routing.NextVar(index))
         time_var = time_dimension.CumulVar(index)
         node_index = manager.IndexToNode(index)
         route_load += data['demands'][node_index]
-        plan_output += '{0} Time({1},{2}) Load({3})\n'.format(node_index,
+        plan_output += '{0} Time({1},{2}) Load({3})\n'.format(LOCATION[node_index],
                                                               solution.Min(
                                                                   time_var),
                                                               solution.Max(
