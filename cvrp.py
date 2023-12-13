@@ -31,7 +31,7 @@ def print_solution(data, manager, routing, solution):
         while not routing.IsEnd(index):
             node_index = manager.IndexToNode(index)
             route_load += data["demands"][node_index]
-            plan_output += f" {LOCATION[node_index]} ({route_load}) -> "
+            plan_output += f"{LOCATION[node_index]} Load({route_load}) -> "
             previous_index = index
             index = solution.Value(routing.NextVar(index))
             route_distance += routing.GetArcCostForVehicle(
