@@ -61,7 +61,6 @@ function initMap() {
         "Sharon Resort",
       ],
     },
-    ,
   ];
 
   for (let i = 0; i < mapData.length; i++) {

@@ -9,8 +9,7 @@ function initMap() {
 {start: 'Dtdc Courier Service Aerocity mohali', end: 'Dtdc Courier Service Aerocity mohali', waypoints: ['La Palacio Luxury Banquet & Lawns - Wedding Palace in Zirakpur', 'Sharon Resort']},
 {start: 'Dtdc Courier Service Aerocity mohali', end: 'Dtdc Courier Service Aerocity mohali', waypoints: ['Strawberry Global Smart School', 'Jayant education', 'The Amaltas Farms']},
 {start: 'Dtdc Courier Service Aerocity mohali', end: 'Dtdc Courier Service Aerocity mohali', waypoints: ['Plaksha University', 'Gurdwara Dushat Daman Durali', 'Singh Sheeda Gurdwara Sahib', 'Amity University, Mohali']},
-,
-  ];
+];
 
   for (let i = 0; i < mapData.length; i++) {
 
