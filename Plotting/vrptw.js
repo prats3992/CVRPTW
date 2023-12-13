@@ -64,10 +64,20 @@ function initMap() {
   ];
 
   for (let i = 0; i < mapData.length; i++) {
+    const mapAndPanelContainer = document.createElement("div");
+    mapAndPanelContainer.className = "map-and-panel-container";
+    document.getElementById("container").appendChild(mapAndPanelContainer);
+
+    // Create map container
     const mapContainer = document.createElement("div");
     mapContainer.id = `map-${i}`;
     mapContainer.className = "map-container";
-    document.getElementById("container").appendChild(mapContainer);
+    mapAndPanelContainer.appendChild(mapContainer);
+
+    // Create directions panel container
+    const directionsPanelContainer = document.createElement("div");
+    directionsPanelContainer.className = "directions-panel";
+    mapAndPanelContainer.appendChild(directionsPanelContainer);
 
     const map = new google.maps.Map(mapContainer, {
       zoom: 13,
@@ -96,7 +106,8 @@ function initMap() {
             directionsService,
             directionsRenderer,
             startLocation,
-            endLocation
+            endLocation,
+            directionsPanelContainer
           );
         } else {
           console.error("Unable to geocode end location:", mapData[i].end);
@@ -111,7 +122,8 @@ function calculateAndDisplayRoute(
   directionsService,
   directionsRenderer,
   startLocation,
-  endLocation
+  endLocation,
+  directionsPanelContainer
 ) {
   const waypts = mapData.waypoints.map((waypoint) => ({
     location: waypoint,
@@ -132,7 +144,7 @@ function calculateAndDisplayRoute(
       const route = response.routes[0];
       const summaryPanel = document.createElement("div");
       summaryPanel.className = "directions-panel";
-      document.getElementById("container").appendChild(summaryPanel);
+      directionsPanelContainer.appendChild(summaryPanel);
 
       if (mapData.waypoints.length) {
         summaryPanel.innerHTML = `<b>Route for Map ${mapData.start} to ${mapData.end} via ${mapData.waypoints}</b><br>`;
@@ -162,20 +174,21 @@ function calculateAndDisplayRoute(
     })
     .catch((e) => window.alert("Directions request failed due to " + e));
 }
+
 function createCustomMarker(position, label) {
   return new google.maps.Marker({
     position: new google.maps.LatLng(position.lat, position.lng),
     label: {
       text: label,
-      color: "BLACK", // Label text color
+      color: "black", // Label text color
     },
     icon: {
       path: google.maps.SymbolPath.CIRCLE,
-      scale: 10,
-      fillColor: label === "WAYPOINT" ? "blue" : "pink", // Custom color for waypoints
+      scale: 20,
+      fillColor: label === "WAYPOINT" ? "blue" : "#ffdb00", // Custom color for waypoints
       fillOpacity: 1,
       strokeWeight: 1,
-      strokeColor: "white", // Set the stroke color
+      strokeColor: "black", // Set the stroke color
     },
     map: null, // Set map property to the map object when placing on the map
   });
