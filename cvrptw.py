@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-import time
 import math
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
@@ -151,10 +150,7 @@ search_parameters = pywrapcp.DefaultRoutingSearchParameters()
 search_parameters.first_solution_strategy = (
     routing_enums_pb2.FirstSolutionStrategy.PARALLEL_CHEAPEST_INSERTION)
 # Solve the problem.
-start_time = time.time()
 solution = routing.SolveWithParameters(search_parameters)
-end_time = time.time()
-# print(end_time-start_time)
 # Print solution on console.
 if solution:
     print_solution(data, manager, routing, solution)
