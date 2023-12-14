@@ -9,16 +9,19 @@ function initMap() {
         "Mahendra Chaudhary Zoological Park, Chhat Bir Zoo, Zirakpur",
         "Sharon Resort",
       ],
+      waypointLoads: [0, 4, 8, 16, 16], // Example loads for each waypoint
     },
     {
       start: "Dtdc Courier Service Aerocity mohali",
       end: "Dtdc Courier Service Aerocity mohali",
       waypoints: ["Mohali IT City Park"],
+      waypointLoads: [0,3,3],
     },
     {
       start: "Dtdc Courier Service Aerocity mohali",
       end: "Dtdc Courier Service Aerocity mohali",
       waypoints: ["Akm Resorts", "Jayant education"],
+      waypointLoads: [0,1,4,4],
     },
     {
       start: "Dtdc Courier Service Aerocity mohali",
@@ -28,30 +31,36 @@ function initMap() {
         "Singh Sheeda Gurdwara Sahib",
         "Gurdwara Dushat Daman Durali",
       ],
+      waypointLoads: [0,9,11,17,17],
     },
     {
       start: "Dtdc Courier Service Aerocity mohali",
       end: "Dtdc Courier Service Aerocity mohali",
       waypoints: ["The Amaltas Farms", "Radisson Hotel Chandigarh Zirakpur"],
+      waypointLoads: [0,7,12,12],
     },
     {
       start: "Dtdc Courier Service Aerocity mohali",
       end: "Dtdc Courier Service Aerocity mohali",
       waypoints: ["Amity University, Mohali"],
+      waypointLoads: [0,3,3],
     },
     {
       start: "Dtdc Courier Service Aerocity mohali",
       end: "Dtdc Courier Service Aerocity mohali",
       waypoints: ["Strawberry Global Smart School"],
+      waypointLoads: [0,8,8],
     },
     {
       start: "Dtdc Courier Service Aerocity mohali",
       end: "Dtdc Courier Service Aerocity mohali",
       waypoints: ["JLPL Falcon View"],
+      waypointLoads: [0,5,5],
     },
     {
       start: "Dtdc Courier Service Aerocity mohali",
       end: "Dtdc Courier Service Aerocity mohali",
+      waypointLoads: [0,0],
     },
     {
       start: "Dtdc Courier Service Aerocity mohali",
@@ -60,6 +69,7 @@ function initMap() {
         "Bestech Square Mall",
         "The Mohali Club || Wyndham Chandigarh Mohali",
       ],
+      waypointLoads: [0,5,7,7],
     },
   ];
 
@@ -82,7 +92,7 @@ function initMap() {
     const map = new google.maps.Map(mapContainer, {
       zoom: 13,
       center: { lat: 30.7052, lng: 76.785 },
-    });
+    });   
 
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer({ map });
@@ -125,10 +135,12 @@ function calculateAndDisplayRoute(
   endLocation,
   directionsPanelContainer
 ) {
-  const waypts = mapData.waypoints.map((waypoint) => ({
+  const waypts = mapData.waypoints.map((waypoint, index) => ({
     location: waypoint,
     stopover: true,
   }));
+
+  const demands = mapData.waypointLoads; // Assuming you have an array of loads corresponding to waypoints
 
   directionsService
     .route({
@@ -152,24 +164,15 @@ function calculateAndDisplayRoute(
         summaryPanel.innerHTML = `<b>Route for Map ${mapData.start} to ${mapData.end}</b><br>`;
       }
 
-      // Manually add markers for waypoints
-      for (let i = 0; i < route.legs.length - 1; i++) {
-        const waypointLocation = route.legs[i].end_location;
-        const waypointMarker = createCustomMarker(waypointLocation, "WAYPOINT");
-        waypointMarker.setMap(directionsRenderer.getMap());
-      }
-
-      // Suppress default markers for start and end points
-      directionsRenderer.suppressMarkers = true;
-
       for (let i = 0; i < route.legs.length; i++) {
         const routeSegment = i + 1;
 
-        summaryPanel.innerHTML +=
-          "<b>Route Segment: " + routeSegment + "</b><br>";
-        summaryPanel.innerHTML += route.legs[i].start_address + " to ";
-        summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
-        summaryPanel.innerHTML += route.legs[i].distance.text + "<br><br>";
+        summaryPanel.innerHTML += `<b>Route Segment: ${routeSegment}</b><br>`;
+        summaryPanel.innerHTML += `${route.legs[i].start_address} to ${route.legs[i].end_address}<br>`;
+        summaryPanel.innerHTML += `${route.legs[i].distance.text}<br>`;
+        
+        const waypointIndex = i; // Adjust this based on your data structure
+        summaryPanel.innerHTML += `Load at ${route.legs[i].end_address}: ${demands[waypointIndex]}<br><br>`;
       }
     })
     .catch((e) => window.alert("Directions request failed due to " + e));
