@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map Plot Selection</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    nav {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Select a Map Plot To See</h1>
+  </header>
+
+  <main>
+    <nav>
+      <button onclick="redirectToPage('Plotting/vrp.html')">View VRP Map</button>
+      <button onclick="redirectToPage('Plotting/cvrp.html')">View CVRP Map</button>
+      <button onclick="redirectToPage('Plotting/vrptw.html')">View VRP-TW Map</button>
+      <button onclick="redirectToPage('Plotting/cvrptw.html')">View CVRP-TW Map</button>
+    </nav>
+  </main>
+
+  <script>
+    function redirectToPage(page) {
+      window.location.href = page;
+    }
+  </script>
+
+</body>
+</html>
