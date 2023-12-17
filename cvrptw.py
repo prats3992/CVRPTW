@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-import math
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 from route_matrices import LOCATION
