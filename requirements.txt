@@ -3,7 +3,7 @@ numpy==1.25.0
 absl-py==2.0.0
 protobuf==4.24.1
 requests==2.31.0
-idna==2.10
+idna==3.7
 urllib3==1.26.18
 charset-normalizer==3.1.0
 certifi==2023.7.22
